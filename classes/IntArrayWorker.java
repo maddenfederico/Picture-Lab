@@ -100,5 +100,57 @@ public class IntArrayWorker
       }
     }
   }
+  
+  /**
+   * Returns the count of the number of times a passed
+   * integer value is found in the matrix
+   */
+  public int getCount(int value)
+  {
+	  int count = 0;
+	  for(int[] row:matrix)
+	  {
+		  for(int element:row)
+		  {
+			  if(element == value)
+			  {
+				  count++;
+			  }
+		  }
+	  }
+	  return count;
+  }
+  
+  /**
+   * returns the largest value in the matrix
+   */
+  public int getLargest()
+  {
+	  int largest = 0;
+	  for(int[] row:matrix)
+	  {
+		  for(int element:row)
+		  {
+			  if(element > largest)
+			  {
+				  largest = element;
+			  }
+		  }
+	  }
+	  return largest;
+  }
+  
+  /**
+   * returns the total of all integers in a specifies column
+   */
+  public int getColTotal(int col)
+  {
+	  int total = 0;
+	  for(int i = 0; i < matrix.length; i++)
+	  {
+		  total += matrix[i][col];
+	  }
+	  return total;
+  }
  
 }
