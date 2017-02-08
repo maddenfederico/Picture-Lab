@@ -36,12 +36,28 @@ public class PictureTester
     temple.explore();
   }
   
+  /**Method to test the keepOnlyBlue method */
+  public static void testKeepOnlyBlue()
+  {
+	  Picture jaernel = new Picture("jaernel.jpg");
+	  jaernel.keepOnlyBlue();
+	  jaernel.explore();
+  }
+  
   /** Method to test the collage method */
   public static void testCollage()
   {
     Picture canvas = new Picture("640x480.jpg");
     canvas.createCollage();
     canvas.explore();
+  }
+  
+  /** Method to test grayscale */
+  public static void testGrayscale()
+  {
+	  Picture jaernel = new Picture("jaernel.jpg");
+	  jaernel.grayscale();
+	  jaernel.explore();
   }
   
   /** Method to test edgeDetection */
@@ -52,6 +68,22 @@ public class PictureTester
     swan.explore();
   }
   
+  /** Method to test negate */
+  public static void testNegate()
+  {
+	  Picture jaernel = new Picture("jaernel.jpg");
+	  jaernel.negate();
+	  jaernel.explore();
+  }
+  
+  /** Method to test fixUnderwater */
+  public static void  testFixUnderwater()
+  {
+	  Picture water = new Picture ("water.jpg");
+	  water.fixUnderwater();
+	  water.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -59,7 +91,7 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+    //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();

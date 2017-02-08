@@ -100,6 +100,51 @@ public class Picture extends SimplePicture
     }
   }
   
+  /** Method to set all values other than blue to 0 */
+  public void keepOnlyBlue()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+		  for (Pixel pixelObj : rowArray)
+		  {
+			  pixelObj.setGreen(0);
+			  pixelObj.setRed(0);
+		  }
+	  }
+  }
+  
+  /** Method that converts the picture to negative */
+  public void negate()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+		  for (Pixel pixelObj : rowArray)
+		  {
+			  pixelObj.setGreen(255 - pixelObj.getGreen());
+			  pixelObj.setRed(255 - pixelObj.getRed());
+			  pixelObj.setBlue(255 - pixelObj.getBlue());
+		  }
+	  }	 
+  }
+  
+  /** Method that converts the picture to grayscale */
+  public void grayscale()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+		  for (Pixel pixelObj : rowArray)
+		  {
+			  int averageValue = (pixelObj.getRed() + pixelObj.getBlue() + pixelObj.getGreen()) / 3;
+			  pixelObj.setGreen(averageValue);
+			  pixelObj.setRed(averageValue);
+			  pixelObj.setBlue(averageValue);
+		  }
+	  }	 
+  }
+  
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -217,6 +262,33 @@ public class Picture extends SimplePicture
           leftPixel.setColor(Color.WHITE);
       }
     }
+  }
+  
+  /** Method to make underwater photos clearer */
+  public void fixUnderwater()
+  {
+	  int contrast = 10;
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+		  for (Pixel pixelObj : rowArray)
+		  {
+			  int blue = pixelObj.getBlue();
+			  int red = pixelObj.getRed();
+			  int green = pixelObj.getGreen();
+			  if(blue >= green)
+			  {
+				  pixelObj.setGreen(green - contrast);
+				  pixelObj.setBlue(blue + contrast);
+			  }
+			  if(blue < green)
+			  {
+				  pixelObj.setGreen(green + contrast);
+				  pixelObj.setBlue(blue - contrast);
+			  }
+		  }
+	  }	 
+	  
   }
   
   
