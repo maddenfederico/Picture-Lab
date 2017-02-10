@@ -84,6 +84,38 @@ public class PictureTester
 	  water.explore();
   }
   
+  /** Method to test mirrorVerticalRightToLeft */
+  public static void testMirrorVerticalRightToLeft()
+  {
+	  Picture jaernel = new Picture("jaernel.jpg");
+	  jaernel.mirrorVerticalRightToLeft();
+	  jaernel.explore();
+  }
+  
+  /** Method to test mirrorHorizontal */
+  public static void testMirrorHorizontal()
+  {
+	  Picture jaernel = new Picture("jaernel.jpg");
+	  jaernel.mirrorHorizontal();
+	  jaernel.explore();
+  }
+  
+  /** Method to test mirrorHorizontalBotToTop */
+  public static void testMirrorHorizontalBotToTop()
+  {
+	  Picture jaernel = new Picture("jaernel.jpg");
+	  jaernel.mirrorHorizontalBotToTop();
+	  jaernel.explore();
+  }
+  
+  /** Method to test mirrorDiagonal */
+  public static void testMirrorDiagonal()
+  {
+	  Picture jaernel = new Picture("jaernel.jpg");
+	  jaernel.mirrorDiagonal();
+	  jaernel.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -99,6 +131,10 @@ public class PictureTester
     //testGrayscale();
     //testFixUnderwater();
     //testMirrorVertical();
+	//testMirrorVerticalRightToLeft();
+	//testMirrorHorizontal();
+	//testMirrorHorizontalBotToTop();
+	testMirrorDiagonal();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
