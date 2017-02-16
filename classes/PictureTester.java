@@ -52,6 +52,14 @@ public class PictureTester
     canvas.explore();
   }
   
+  /** Method to test myCollage */
+  public static void testMyCollage()
+  {
+	  Picture myCanvas = new Picture("7inX95in.jpg");
+	  myCanvas.myCollage();
+	  myCanvas.explore();
+  }
+  
   /** Method to test grayscale */
   public static void testGrayscale()
   {
@@ -132,6 +140,15 @@ public class PictureTester
 	  seagull.explore();
   }
   
+  /** Method to test copy2 */
+  public static void testCopy2()
+  {
+	  Picture jaernel = new Picture("jaernel.jpg");
+	  Picture femaleLionAndHall = new Picture("femaleLionAndHall.jpg");
+	  femaleLionAndHall.copy2(jaernel, 228, 338, 277, 285, 475, 420);
+	  femaleLionAndHall.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -156,7 +173,9 @@ public class PictureTester
     //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
+	testMyCollage();
     //testCopy();
+	//testCopy2();
     //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();

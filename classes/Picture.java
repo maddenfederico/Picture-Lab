@@ -356,6 +356,30 @@ public class Picture extends SimplePicture
       }
     }   
   }
+  
+  public void copy2(Picture fromPic,
+		  int startRow, int startCol, int fromStartRow, int fromStartCol, int fromEndRow, int fromEndCol)
+  {
+	    Pixel fromPixel = null;
+	    Pixel toPixel = null;
+	    Pixel[][] toPixels = this.getPixels2D();
+	    Pixel[][] fromPixels = fromPic.getPixels2D();
+	    for (int fromRow = fromStartRow, toRow = startRow; 
+	         fromRow < fromEndRow &&
+	         toRow < toPixels.length; 
+	         fromRow++, toRow++)
+	    {
+	      for (int fromCol = fromStartCol, toCol = startCol; 
+	           fromCol < fromEndCol &&
+	           toCol < toPixels[0].length;  
+	           fromCol++, toCol++)
+	      {
+	        fromPixel = fromPixels[fromRow][fromCol];
+	        toPixel = toPixels[toRow][toCol];
+	        toPixel.setColor(fromPixel.getColor());
+	      }
+	    }   	  
+  }
 
   /** Method to create a collage of several pictures */
   public void createCollage()
@@ -374,6 +398,27 @@ public class Picture extends SimplePicture
     this.write("collage.jpg");
   }
   
+  /** Method to create my custom collage */
+  public void myCollage()
+  {
+	  Picture jaernel = new Picture("jaernel.jpg");
+	  
+	  Picture jaernelZeroBlue = new Picture(jaernel);
+	  jaernelZeroBlue.zeroBlue();
+	  
+	  Picture jaernelGrayscale = new Picture(jaernel);
+	  jaernelGrayscale.grayscale();
+	  
+	  Picture jaernelOnlyBlue = new Picture(jaernel);
+	  jaernelOnlyBlue.keepOnlyBlue();
+	  
+	  this.copy2(jaernelZeroBlue, 0, 0, 277, 285, 475, 420);
+	  this.copy2(jaernelGrayscale, 475, 420, 277, 285, 475, 420);
+	  this.copy2(jaernelOnlyBlue, 228, 338, 277, 285, 475, 420);
+	  this.mirrorDiagonal();
+	  this.write("myCollage.jpg");
+  }
+  
   
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
@@ -382,8 +427,10 @@ public class Picture extends SimplePicture
   {
     Pixel leftPixel = null;
     Pixel rightPixel = null;
+    Pixel bottomPixel = null;
     Pixel[][] pixels = this.getPixels2D();
     Color rightColor = null;
+    Color bottomColor = null;
     for (int row = 0; row < pixels.length; row++)
     {
       for (int col = 0; 
@@ -391,9 +438,12 @@ public class Picture extends SimplePicture
       {
         leftPixel = pixels[row][col];
         rightPixel = pixels[row][col+1];
+        
+        bottomPixel = pixels[row-1][col];
+        bottomColor = bottomPixel.getColor();
         rightColor = rightPixel.getColor();
         if (leftPixel.colorDistance(rightColor) > 
-            edgeDist)
+            edgeDist || leftPixel.colorDistance(bottomColor) > edgeDist)
           leftPixel.setColor(Color.BLACK);
         else
           leftPixel.setColor(Color.WHITE);
